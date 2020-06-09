@@ -1,0 +1,50 @@
+import traffic.*
+import dependencias.*
+import rodados.*
+
+
+test "test flota de rodados" 
+{
+    const deportes = new Dependencia(empleados = 45)
+    const cultura = new Dependencia(empleados = 31)
+
+    const cachito = new Corsa(color = "rojo")
+
+
+    const corsa1 = new Corsa(color = "Azul")
+    const corsa2 = new Corsa(color = "verde")
+    const kwid1 = new Kwid()
+    const palio = new AutosEspeciales(peso = 1200, color = "beige", velocidadMaxima = 160, capacidad = 5)
+
+    deportes.agregarAFlota(cachito)
+    deportes.agregarAFlota(corsa1)
+    deportes.agregarAFlota(corsa2)
+    deportes.agregarAFlota(kwid1)
+    deportes.agregarAFlota(palio)
+
+    const kwid2 = new Kwid(tieneTanque = true)
+    const kwid3 = new Kwid(tieneTanque = true)
+    const kwid4 = new Kwid(tieneTanque = false)
+
+    trafic.interior(popular)
+    trafic.motor(bataton)
+
+    cultura.agregarAFlota(cachito)
+    cultura.agregarAFlota(kwid2)
+    cultura.agregarAFlota(kwid3)
+    cultura.agregarAFlota(kwid4)
+    cultura.agregarAFlota(trafic)
+
+    assert.equals(6450, deportes.pesoTotalFlota())
+    assert.equals(10700, cultura.pesoTotalFlota())
+    assert.that(deportes.estaBienEquipada())
+    assert.notThat(cultura.estaBienEquipada())
+    assert.equals(7,deportes.capacidadTotalEnColor("Azul"))
+    assert.equals(10,cultura.capacidadTotalEnColor("Azul"))
+    assert.equals("beige",deportes.colorDelRodadoMasRapido())
+    assert.equals("rojo",cultura.colorDelRodadoMasRapido())
+    assert.that(deportes.esGrande())
+    assert.notThat(cultura.esGrande())
+    assert.equals(25, deportes.capacidadFaltante())
+    assert.equals(5, cultura.capacidadFaltante())
+}

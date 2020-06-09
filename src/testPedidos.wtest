@@ -1,0 +1,15 @@
+import pedidos.*
+import rodados.*
+
+test "test pedidos" {
+
+    const cachito = new Corsa(color="Rojo")
+    const pedido1 = new Pedido(distancia = 960, tiempo=8, pasajeros=4, coloresIncompatibles=#{"Azul","Negro"})
+    const pedido2 = new Pedido(distancia = 960, tiempo=8, pasajeros=4, coloresIncompatibles=#{"Azul","Negro","Rojo"})
+    const pedido3 = new Pedido(distancia = 960, tiempo=6, pasajeros=4, coloresIncompatibles=#{"Azul","Negro"})
+
+    assert.that(pedido1.puedeLlevar(cachito))
+    assert.notThat(pedido2.puedeLlevar(cachito))
+    assert.notThat(pedido3.puedeLlevar(cachito))
+
+}
